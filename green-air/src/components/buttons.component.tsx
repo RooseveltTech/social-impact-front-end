@@ -12,7 +12,7 @@ export const LoginButton = () => {
   );
 };
 
-export const RegisterButton = () => {
+export const Like = () => {
   return (
     <Link href="/register" style={{ marginRight: 10 }}>
       Register

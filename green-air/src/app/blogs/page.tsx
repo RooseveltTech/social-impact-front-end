@@ -8,7 +8,6 @@ import { redirect } from "next/navigation";
 import {
     LoginButton,
     ProfileButton,
-    RegisterButton,
   } from "../../components/buttons.component";
 
 type Blogs = {
@@ -71,7 +70,7 @@ export default async function Blogs() {
                 {
                         article.blog_body.length > 2 ? 
                         <p>
-                            {article.blog_body.substring(0,2)}
+                            {article.blog_body.substring(0,400)}
                             <br></br>
                             <Link href={{
                                     pathname: `/blog/${article.id}`,
