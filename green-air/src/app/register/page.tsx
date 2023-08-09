@@ -120,7 +120,7 @@ export default function Page() {
         const JSONdata = JSON.stringify(data)
      
         // API endpoint where we send form data.
-        const endpoint = "https://f021-102-67-1-25.ngrok-free.app/auth/register/"
+        const endpoint = "https://backendgreenair.azurewebsites.net/auth/register/"
         // console.log(base_url)
         // Form the request for sending data to the server.
         const options = {
