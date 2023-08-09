@@ -27,12 +27,12 @@ export const Input = ({
 					className="text-sm text-primary-marine-blue "
 				>
 					{label}
-				</label>
+				</label>      
 				{required && showRequired && (
-					<p className="text-primary-starberry-red leading-3">
-						This field is required
-					</p>
-				)}
+                    <p className="text-primary-starberry-red leading-3">
+                        This field is required
+                    </p> 
+				)} 
 			</span>
 			<input
 				type={type}

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { getCsrfToken, signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { UserInfo, UserServiceConfiguration } from 'AppTypes';
 import { Button } from '../../components/button';
 import { LoginSidebar } from '../../components/loginSidebar';

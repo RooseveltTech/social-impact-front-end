@@ -27,17 +27,18 @@ export const MorePersonalInfo = ({
 			<h2>Personal info</h2>
 			<p>Please provide the following details.</p>
 
-			<Input
+			{/* <Input
 				label="Phone Number"
 				placeholder="8168187776"
+                type="phone"
 				showRequired={showRequired && !userInfo.phoneNumber}
 				value={userInfo.phoneNumber}
 				onChange={(e: FormEvent<HTMLInputElement>) =>
 					handlePersonalInfo(e, 'phoneNumber')
 				}
-			/>
+			/> */}
 
-            <Input
+            {/* <Input
 				label="City"
 				placeholder="e.g. Punjab"
 				showRequired={showRequired && !userInfo.city}
@@ -45,9 +46,9 @@ export const MorePersonalInfo = ({
 				onChange={(e: FormEvent<HTMLInputElement>) =>
 					handlePersonalInfo(e, 'city')
 				}
-			/>
+			/> */}
 
-			<Input
+			{/* <Input
 				label="Street"
 				// type="email"
 				placeholder="2, Lagos Street"
@@ -58,9 +59,9 @@ export const MorePersonalInfo = ({
 				onChange={(e: FormEvent<HTMLInputElement>) =>
 					handlePersonalInfo(e, 'street')
 				}
-			/>
+			/> */}
 
-			<Input
+			{/* <Input
 				label="Country"
 				// type="email"
 				placeholder="Nigeria"
@@ -71,7 +72,7 @@ export const MorePersonalInfo = ({
 				onChange={(e: FormEvent<HTMLInputElement>) =>
 					handlePersonalInfo(e, 'countryName')
 				}
-			/>
+			/> */}
 
 		</section>
 	);

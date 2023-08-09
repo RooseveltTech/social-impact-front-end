@@ -52,3 +52,15 @@ export const BackButton = () => {
         </button>
     )
   }
+
+export const RegisterButton = () => {
+   
+    return (
+        <button
+            type="submit"
+            className="rounded bg-primary-purplish-blue text-white hover:opacity-70"
+            >
+            Confirm
+        </button>
+    )
+  }

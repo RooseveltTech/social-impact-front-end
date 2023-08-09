@@ -28,7 +28,7 @@ type Blog = {
 
 export default async function Blogs() {
     const blogs = await fetch(
-        process.env.BASE_URL + '/air/v1/blog/',{
+        process.env.BASE_URL + '/air/v1/blog/', {
                 "headers": {
                     "content-type": 'application/json',
                 },
@@ -68,7 +68,7 @@ export default async function Blogs() {
                 </header>
              
                 {
-                        article.blog_body.length > 2 ? 
+                        article.blog_body.length > 400 ? 
                         <p>
                             {article.blog_body.substring(0,400)}
                             <br></br>

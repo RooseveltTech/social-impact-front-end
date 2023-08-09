@@ -9,11 +9,9 @@ export const ThankYou = () => {
 			</figure>
 			<h2>Thank you</h2>
 			<span className="text-center">
-				<p>Thanks for confirming your subscription!</p>
+				<p>Thanks for register!</p>
 				<p>
-					We hope you have using our platform. If you ever need
-					support, please feel free to email us at
-					support@loregaming.com
+					Please login to enjoy the app
 				</p>
 			</span>
 		</section>
