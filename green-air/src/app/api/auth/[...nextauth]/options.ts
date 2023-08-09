@@ -12,7 +12,7 @@ export const options: NextAuthOptions = {
             },
             authorize: async (credentials) => {
                 try {
-                    const res = await fetch(process.env.BASE_URL + "/auth/login/", {
+                    const res = await fetch("https://backendgreenair.azurewebsites.net/auth/login/", {
                         method: "POST",
                         body: JSON.stringify({
                             email: credentials?.email,

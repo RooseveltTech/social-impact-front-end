@@ -28,7 +28,7 @@ type Blog = {
 
 export default async function Blogs() {
     const blogs = await fetch(
-        process.env.BASE_URL + '/air/v1/blog/', {
+        'https://backendgreenair.azurewebsites.net/air/v1/blog/', {
                 "headers": {
                     "content-type": 'application/json',
                 },

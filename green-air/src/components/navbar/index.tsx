@@ -15,7 +15,7 @@ export default async function Navigation() {
     const token  = session.access
 
     const active = await fetch(
-        process.env.BASE_URL + '/air/v1/check_user/',{
+        'https://backendgreenair.azurewebsites.net/air/v1/check_user/',{
                 "headers": {
                     "content-type": 'application/json',
                     "Authorization": `Bearer ${token}`,

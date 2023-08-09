@@ -35,7 +35,7 @@ export default async function Home() {
     // console.log(token, "THIS IS TOKEN")
 
     const blogs = await fetch(
-        process.env.BASE_URL + '/air/v1/blogs/',{
+       'https://backendgreenair.azurewebsites.net/air/v1/blogs/',{
                 "headers": {
                     "content-type": 'application/json',
                 },
