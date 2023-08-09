@@ -42,7 +42,7 @@ export default async function Home() {
     // console.log(token, "THIS IS TOKEN")
 
     const get_air_quality = await fetch(
-        'https://backendgreenair.azurewebsites.net/air/v1/air-quality/',{
+        process.env.BASE_URL + '/air/v1/air-quality/',{
                 "headers": {
                     "content-type": 'application/json',
                     "Authorization": `Bearer ${token}`,

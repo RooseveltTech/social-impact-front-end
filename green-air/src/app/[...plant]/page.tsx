@@ -42,7 +42,7 @@ export default async function Home({
     const token  = session.access
     const plant_id = params.plant[1];
     const get_air_quality = await fetch(
-        `https://backendgreenair.azurewebsites.net/air/v1/air-plants/?plant_id=${plant_id}`,{
+        process.env.BASE_URL + `/air/v1/air-plants/?plant_id=${plant_id}`,{
                 "headers": {
                     "content-type": 'application/json',
                     "Authorization": `Bearer ${token}`,

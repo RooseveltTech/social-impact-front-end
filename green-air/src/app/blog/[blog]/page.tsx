@@ -33,7 +33,7 @@ export default async function Blog({
 
 
     const single_blog = await fetch(
-        `https://backendgreenair.azurewebsites.net/air/v1/single_blog/?blog_id=${blog_id}`,{
+        process.env.BASE_URL + `/air/v1/single_blog/?blog_id=${blog_id}`,{
                 "headers": {
                     "content-type": 'application/json',
                 },
