@@ -41,6 +41,10 @@ export default function Page() {
         const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return emailRegex.test(email);
         }
+        
+    
+  
+    
 
 	const nextStep = (onGoingStep?: number) => {
 		if (step === 3) return;
@@ -63,8 +67,21 @@ export default function Page() {
                 ){
                     setShowRequiredFields(true);
                     return;
-                }else{
+                }else if(
+                    isValidEmail(userServiceConfiguration.userInfo.email) === true
+                ){
+                    // const res:any = fetch(`https://f021-102-67-1-25.ngrok-free.app/auth/email/?email=${userServiceConfiguration.userInfo.email}`, {
+                    //     method: "GET",
+                    //     headers: {
+                    //     "content-type": "application/json",
+                    //     },
+                    // })
+                    // if (res.status===400){
+                    //     setShowRequiredFields(true);
+                    //     return;
+                    // }
                     
+                
                 }
 				
             }

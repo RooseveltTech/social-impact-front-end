@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { FormEvent } from 'react';
+import { isBreakOrContinueStatement } from 'typescript';
 
 interface InputProps {
 	label: string;
@@ -10,6 +11,11 @@ interface InputProps {
 	showRequired?: boolean;
     matchPassword?: boolean;
 	onChange: (e: FormEvent<HTMLInputElement>) => void;
+}
+
+type EmailExist = {
+    exist: boolean;
+ 
 }
 
 
@@ -30,8 +36,7 @@ export const Input = ({
         return emailRegex.test(email);
     }
     const isValid = isValidEmail(email)===true;
-    console.log(matchPassword, email)
-
+   
 	return (
 		<div className="flex flex-col font-medium">
 			<span className="inline-flex justify-between">
@@ -42,6 +47,7 @@ export const Input = ({
 					{label}
 				</label>    
                 <>
+        
                     {
                         label==="First Name" ? (
                             required && showRequired ? 
@@ -63,8 +69,10 @@ export const Input = ({
                                 :
                                 ( !isValid && email &&
                                     <p className="text-primary-starberry-red leading-3">
-                                        Email not correct
-                                    </p>
+                                        Incorrect Email format
+                                    </p> 
+                                    
+                                   
                                 )          
                     ):(
                         label==="City" ? (
