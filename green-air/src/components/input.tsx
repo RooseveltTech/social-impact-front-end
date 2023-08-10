@@ -8,8 +8,12 @@ interface InputProps {
 	type?: string;
 	required?: boolean;
 	showRequired?: boolean;
+    matchPassword?: boolean;
 	onChange: (e: FormEvent<HTMLInputElement>) => void;
 }
+
+
+
 export const Input = ({
 	label,
 	value,
@@ -18,7 +22,16 @@ export const Input = ({
 	onChange,
 	showRequired = false,
 	required = true,
+    matchPassword = false,
 }: InputProps) => {
+    const email = value
+    function isValidEmail(email: any): boolean {
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return emailRegex.test(email);
+    }
+    const isValid = isValidEmail(email)===true;
+    console.log(matchPassword, email)
+
 	return (
 		<div className="flex flex-col font-medium">
 			<span className="inline-flex justify-between">
@@ -27,12 +40,47 @@ export const Input = ({
 					className="text-sm text-primary-marine-blue "
 				>
 					{label}
-				</label>      
-				{required && showRequired && (
-                    <p className="text-primary-starberry-red leading-3">
-                        This field is required
-                    </p> 
-				)} 
+				</label>    
+                <>
+                    {
+                        label==="First Name" ? (
+                            required && showRequired ? 
+                            <p className="text-primary-starberry-red leading-3">
+                                This field is required
+                            </p> : ""
+                    ):(
+                        label==="Last Name" ? (
+                            required && showRequired ? 
+                            <p className="text-primary-starberry-red leading-3">
+                                This field is required
+                            </p> : ""
+                    ):(
+                        label==="Email Address" ? (
+                            required && showRequired ? 
+                                <p className="text-primary-starberry-red leading-3">
+                                    This field is required
+                                </p>
+                                :
+                                ( !isValid && email &&
+                                    <p className="text-primary-starberry-red leading-3">
+                                        Email not correct
+                                    </p>
+                                )          
+                    ):(
+                        label==="City" ? (
+                            required && showRequired ? 
+                            <p className="text-primary-starberry-red leading-3">
+                                This field is required
+                            </p> : ""
+                    ):(
+                        label==="Password" ? (
+                            required && showRequired ? 
+                            <p className="text-primary-starberry-red leading-3">
+                                This field is required
+                            </p> : ""
+                        ):""
+                    ))))}
+                </>  
 			</span>
 			<input
 				type={type}

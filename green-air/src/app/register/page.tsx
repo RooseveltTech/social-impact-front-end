@@ -13,7 +13,7 @@ import { ThankYou } from '../../components/thankYou';
 
 export default function Page() {
     const [step, setStep] = useState(1);
-    // const [errors, setErrors] = useState({});
+    const [matchPassword, setMatchPassword] = useState(false);
 	const [showRequired, setShowRequiredFields] = useState(false);
 
 	const [userServiceConfiguration, setUserServiceConfiguration] =
@@ -37,30 +37,77 @@ export default function Page() {
 		setUserServiceConfiguration({ ...userServiceConfiguration, userInfo });
 	};
 
+    function isValidEmail(email: any): boolean {
+        const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return emailRegex.test(email);
+        }
 
 	const nextStep = (onGoingStep?: number) => {
 		if (step === 3) return;
 
 		if (step === 1 || (onGoingStep && onGoingStep !== 1 && step === 1)) {
+            
 			if (
-				!userServiceConfiguration.userInfo.firstName ||
-				!userServiceConfiguration.userInfo.lastName ||
-				!userServiceConfiguration.userInfo.email.includes('@')
+				step == 1
 			) {
-				setShowRequiredFields(true);
-				return;
-			}
-		}
-		// if (step === 2 || (onGoingStep && onGoingStep !== 2 && step === 2)) {
+                console.log("step 1");
+                if (
+                    !userServiceConfiguration.userInfo.firstName ||
+                    !userServiceConfiguration.userInfo.lastName ||
+                    !userServiceConfiguration.userInfo.email 
+                ){
+                    setShowRequiredFields(true);
+                    return;
+                }else if(
+                    isValidEmail(userServiceConfiguration.userInfo.email) === false
+                ){
+                    setShowRequiredFields(true);
+                    return;
+                }else{
+                    
+                }
+				
+            }
+            // else{
+            //     console.log("step 2");
+            //     if (!userServiceConfiguration.userInfo.password ||
+            //         !userServiceConfiguration.userInfo.confirmPassword){
+            //             setShowRequiredFields(true);
+            //             return;
+            //         }else if(userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword){
+            //             setMatchPassword(true);
+            //         }
+            // }
+        }
+		// if (step === 2 ) {
 		// 	if (
-		// 		!userServiceConfiguration.userInfo.phoneNumber ||
-		// 		!userServiceConfiguration.userInfo.city ||
-		// 		!userServiceConfiguration.userInfo.street ||
+        //         !userServiceConfiguration.userInfo.password ||
+		// 		!userServiceConfiguration.userInfo.confirmPassword
+                
+        //     ) {
+        //         setShowRequiredFields(true);
+        //         console.log("step 2");
+        //         return;
+        //     }else if(userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword){
+        //         setShowRequiredFields(true);
+        //         setMatchPassword(true);
+        //     }
+		// }
+		// else {
+        //     console.log(step, "step")
+		// 	if (
+		// 		!userServiceConfiguration.userInfo.password ||
+		// 		!userServiceConfiguration.userInfo.confirmPassword ||
 		// 		!userServiceConfiguration.userInfo.countryName 
 		// 	) {
 		// 		setShowRequiredFields(true);
 		// 		return;
 		// 	}
+        //     if(userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword){
+        //         setMatchPassword(true);
+        //         console.log(true, "hrllo")
+        //         return;
+        //     }
 		// }
 		// if (step === 3 || (onGoingStep && onGoingStep !== 3 && step === 3)) {
 		// 	if (
@@ -94,6 +141,8 @@ export default function Page() {
     const handleSubmit = async (event: React.FormEvent) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault()
+        
+
         // console.log("Password does not match", 
         //         userServiceConfiguration.userInfo.phoneNumber,
 		// 		userServiceConfiguration.userInfo.city,
@@ -101,6 +150,11 @@ export default function Page() {
 		// 		userServiceConfiguration.userInfo.countryName 
         //     )
                 
+        if (!userServiceConfiguration.userInfo.password){
+                        setShowRequiredFields(true);
+                        return;
+                    }
+            
      
         // Get data from the form.
         const data = {
@@ -120,7 +174,7 @@ export default function Page() {
         const JSONdata = JSON.stringify(data)
      
         // API endpoint where we send form data.
-        const endpoint = "https://backendgreenair.azurewebsites.net/auth/register/"
+        const endpoint = "https://f021-102-67-1-25.ngrok-free.app/auth/register/"
         // console.log(base_url)
         // Form the request for sending data to the server.
         const options = {
@@ -142,36 +196,6 @@ export default function Page() {
         if (response.status === 201) {
             nextStep();
         }
-        else{
-            const result = await response.json()
-            const keys = Object.keys(result);
-            const values = Object.values(result);
-            console.log(keys, values)
-            
-            {keys.map((key, index) => (
-                alert(key + ": " +values[index])
-            //     <div>
-            
-                
-            //     <div id="toast-danger" className="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
-            //     <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
-            //         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-            //             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
-            //         </svg>
-            //         <span className="sr-only">Error icon</span>
-            //     </div>
-            //     <div className="ml-3 text-sm font-normal">{key} YESS {index}</div>
-            //     <button type="button" className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-danger" aria-label="Close">
-            //         <span className="sr-only">Close</span>
-            //         <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-            //             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-            //         </svg>
-            //     </button>
-            // </div>
-            // </div>
-
-              ))}
-        }
 
       }
     return (
@@ -192,6 +216,7 @@ export default function Page() {
                             userInfo={userServiceConfiguration.userInfo}
                             updateUserInfo={updateUserInfo}
                             showRequired={showRequired}
+                            matchPassword={matchPassword}
 						/>
 					)}
 					

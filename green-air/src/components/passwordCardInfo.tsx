@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { FormEvent } from 'react';
 import { Input } from './input';
 import { Option } from './option';
@@ -9,12 +10,14 @@ interface PersonalInfoProps {
 	userInfo: UserInfo;
 	updateUserInfo: (userInfo: UserInfo) => void;
 	showRequired: boolean;
+    matchPassword: boolean;
 }
 
 export const PasswordCardInfo = ({
 	userInfo,
 	updateUserInfo,
 	showRequired,
+    matchPassword,
 }: PersonalInfoProps) => {
 	const handlePersonalInfo = (
 		event: FormEvent<HTMLInputElement>,
@@ -44,12 +47,19 @@ export const PasswordCardInfo = ({
                     <label
                         htmlFor="Country"
                         className="text-sm text-primary-marine-blue "
+
                     >
                         Country
                     </label> 
                 </span>
                 <select
-                className='border border-neutral-light-gray rounded px-4 py-2 text-sm transition-all focus:outline-none focus:ring-1 focus:ring-primary-purplish-blue'
+                
+                className={clsx(
+					'border border-neutral-light-gray rounded px-4 py-2 text-sm transition-all focus:outline-none focus:ring-1 focus:ring-primary-purplish-blue',
+					
+						!event &&
+						'ring-1 ring-primary-starberry-red'
+				)}
                 onChange={(e: FormEvent<HTMLSelectElement>) =>
 					handleCountry(e, 'countryName')
 				}
@@ -62,22 +72,21 @@ export const PasswordCardInfo = ({
              </select>
             </div>
 			<Input
+				label="City"
+				showRequired={showRequired && !userInfo.city}
+				value={userInfo.city}
+				onChange={(e: FormEvent<HTMLInputElement>) =>
+					handlePersonalInfo(e, 'city')
+				}
+			/>
+
+            <Input
 				label="Password"
 				type="password"
 				showRequired={showRequired && !userInfo.password}
 				value={userInfo.password}
 				onChange={(e: FormEvent<HTMLInputElement>) =>
 					handlePersonalInfo(e, 'password')
-				}
-			/>
-
-            <Input
-				label="Confirm Password"
-				type="password"
-				showRequired={showRequired && !userInfo.confirmPassword}
-				value={userInfo.confirmPassword}
-				onChange={(e: FormEvent<HTMLInputElement>) =>
-					handlePersonalInfo(e, 'confirmPassword')
 				}
 			/>
 		</section>
