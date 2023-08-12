@@ -16,8 +16,8 @@ export default async function Forum(){
                     </div>
                     <form className="mb-6">
                         <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                            <label for="comment" className="sr-only">Your comment</label>
-                            <textarea id="comment" rows="6"
+                            <label aria-label="comment" className="sr-only">Your comment</label>
+                            <textarea id="comment" rows-6
                                 className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                                 placeholder="Write a comment..." required></textarea>
                         </div>
@@ -33,7 +33,7 @@ export default async function Forum(){
                                         className="mr-2 w-6 h-6 rounded-full"
                                         src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
                                         alt="Michael Gough"/>Michael Gough</p>
-                                <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><time
                                         title="February 8th, 2022">Feb. 8, 2022</time></p>
                             </div>
                             <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
@@ -84,7 +84,7 @@ export default async function Forum(){
                                         className="mr-2 w-6 h-6 rounded-full"
                                         src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                         alt="Jese Leos"/>Jese Leos</p>
-                                <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-12"
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><time
                                         title="February 12th, 2022">Feb. 12, 2022</time></p>
                             </div>
                             <button id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2"
@@ -133,7 +133,7 @@ export default async function Forum(){
                                         className="mr-2 w-6 h-6 rounded-full"
                                         src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
                                         alt="Bonnie Green"/>Bonnie Green</p>
-                                <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-03-12"
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><time
                                         title="March 12th, 2022">Mar. 12, 2022</time></p>
                             </div>
                             <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3"
@@ -183,7 +183,7 @@ export default async function Forum(){
                                         className="mr-2 w-6 h-6 rounded-full"
                                         src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
                                         alt="Helene Engels"/>Helene Engels</p>
-                                <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-06-23"
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><time
                                         title="June 23rd, 2022">Jun. 23, 2022</time></p>
                             </div>
                             <button id="dropdownComment4Button" data-dropdown-toggle="dropdownComment4"
