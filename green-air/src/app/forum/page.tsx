@@ -1,111 +1,233 @@
 
 import Link from 'next/link'
-import { options } from '../api/auth/[...nextauth]/options';
+// import { options } from '../api/auth/[...nextauth]/options';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from "next/navigation";
+    
 
+export default async function Forum(){
 
-import {
-    LoginButton,
-    ProfileButton,
-    RegisterButton,
-  } from "../../components/buttons.component";
-
-type Blogs = {
-    data: Blog[];
-    total_page: number;
-    page_count: number;
-    total_data_count: number;
-};
-type Blog = {
-    id: number;
-    blog_title: string;
-    blog_user: string;
-    blog_body: string;
-    created_at : string;
-}
-
-
-export default async function Home() {
-    // const session = await getServerSession(options)
-    // if (!session) {
-    //     redirect("/api/auth/signin");
-    // }
-    // const token  = session.access
-    // console.log(token, "THIS IS TOKEN")
-
-    const blogs = await fetch(
-        process.env.BASE_URL + '/air/v1/blogs/',{
-                "headers": {
-                    "content-type": 'application/json',
-                },
-        }
-      );
-    //   const blog: Blogs = await blogs.json()
-    //   console.log(blog)
-    //   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    //   return (
-    //     <>
-    //     {blogs.status === 200 ? (
-
-    //     <section className="bg-white dark:bg-gray-900">
-    //         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-    //             <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-    //                 {/* <h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Blog</h2>
-    //                 <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">We use an agile approach to test assumptions and connect with the needs of your audience early and often.</p> */}
-    //             </div> 
-    //             <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-    //                 <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-    //                     {/* <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-    //                         <path d="M11 16a1 1 0 0 1-1-1v-1h2v1a1 1 0 0 1-1 1Z"/>
-    //                         <path d="M17.989 6.124a6.5 6.5 0 0 0-12.495-2.1A5 5 0 0 0 6 14h4V8.414l-.293.293a1 1 0 0 1-1.414-1.414l2-2a1 1 0 0 1 1.414 0l2 2a1 1 0 1 1-1.414 1.414L12 8.414V14h5a4 4 0 0 0 .989-7.876Z"/> */}
-    //                         <svg className="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-    //                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-    //                         </svg>
-    //                     {/* </svg> */}
-    //                     <span className="sr-only">Notifications</span>
-    //                     <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{aqi.aqi}</div>
-    //                 </button>
-    //                 <h3>{aqi.idx}</h3>
-    //                 <h3>{aqi.city}</h3>
-    //                 <h3>{aqi.aqi_status}</h3>
-    //                 <h3>{aqi.aqi_color}</h3>
-    //                 <h3>{aqi.aqi_message}</h3>
-    //             </div> 
-    //             <div className="grid gap-8 lg:grid-cols-3">
-    //                 {aqi.all_plants.map((plant) => (
-    //                     // {plant.toxicity_level == "LOW"? (): ()}
-    //                     <article className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-    //                         <div className="flex justify-between items-center mb-5 text-gray-500">
-    //                             <span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-    //                                 <svg className="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path></svg>
-    //                                 {plant.toxicity_level}
-    //                             </span>
-    //                             <span className="text-sm">{plant.botanical_name}</span>
-    //                         </div>
-    //                         <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">{plant.name}</a></h2>
-    //                         <p className="mb-5 font-light text-gray-500 dark:text-gray-400">{plant.plant_care}</p>
-    //                         <div className="flex justify-between items-center">
-    //                             <div className="flex items-center space-x-4">
-    //                                 <img className="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" />
-    //                                 <span className="font-light dark:text-white">
-    //                                     { months[new Date(plant.created_at).getMonth()]+"/"+ new Date(plant.created_at).getFullYear()}
-    //                                 </span>
-    //                             </div>
-    //                             <Link href={{
-    //                                 pathname: `/blog/${plant.id}`,
-    //                                 }} className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
-    //                                 Read more
-    //                                 <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-    //                             </Link>
-    //                         </div>
-    //                     </article>  
-    //                 ))}                
-    //             </div> 
-    //         </div>
-    //     </section>): (redirect("/api/auth/signin"))}
-    //     </>
-    //   )
-  
+    return (
+        <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 main-block" > 
+            <section className="bg-white dark:bg-gray-900">
+                <div className="max-w-2xl mx-auto px-4">
+                    <div className="flex justify-between items-center mb-6">
+                        <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
+                    </div>
+                    <form className="mb-6">
+                        <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                            <label for="comment" className="sr-only">Your comment</label>
+                            <textarea id="comment" rows="6"
+                                className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                                placeholder="Write a comment..." required></textarea>
+                        </div>
+                        <button type="submit"
+                            className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                            Post comment
+                        </button>
+                    </form>
+                    <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
+                        <footer className="flex justify-between items-center mb-2">
+                            <div className="flex items-center">
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
+                                        className="mr-2 w-6 h-6 rounded-full"
+                                        src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                        alt="Michael Gough"/>Michael Gough</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
+                                        title="February 8th, 2022">Feb. 8, 2022</time></p>
+                            </div>
+                            <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                type="button">
+                                <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                                    </path>
+                                </svg>
+                                <span className="sr-only">Comment settings</span>
+                            </button>
+                            <div id="dropdownComment1"
+                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownMenuIconHorizontalButton">
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </footer>
+                        <p className="text-gray-500 dark:text-gray-400">Very straight-to-point article. Really worth time reading. Thank you! But tools are just the
+                            instruments for the UX designers. The knowledge of the design tools are as important as the
+                            creation of the design strategy.</p>
+                        <div className="flex items-center mt-4 space-x-4">
+                            <button type="button"
+                                className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
+                                <svg aria-hidden="true" className="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                Reply
+                            </button>
+                        </div>
+                    </article>
+                    <article className="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
+                        <footer className="flex justify-between items-center mb-2">
+                            <div className="flex items-center">
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
+                                        className="mr-2 w-6 h-6 rounded-full"
+                                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                        alt="Jese Leos"/>Jese Leos</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-12"
+                                        title="February 12th, 2022">Feb. 12, 2022</time></p>
+                            </div>
+                            <button id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                type="button">
+                                <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                                    </path>
+                                </svg>
+                                <span className="sr-only">Comment settings</span>
+                            </button>
+                            <div id="dropdownComment2"
+                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownMenuIconHorizontalButton">
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </footer>
+                        <p className="text-gray-500 dark:text-gray-400">Much appreciated! Glad you liked it ☺️</p>
+                        <div className="flex items-center mt-4 space-x-4">
+                            <button type="button"
+                                className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
+                                <svg aria-hidden="true" className="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                Reply
+                            </button>
+                        </div>
+                    </article>
+                    <article className="p-6 mb-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                        <footer className="flex justify-between items-center mb-2">
+                            <div className="flex items-center">
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
+                                        className="mr-2 w-6 h-6 rounded-full"
+                                        src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+                                        alt="Bonnie Green"/>Bonnie Green</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-03-12"
+                                        title="March 12th, 2022">Mar. 12, 2022</time></p>
+                            </div>
+                            <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                type="button">
+                                <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                                    </path>
+                                </svg>
+                                <span className="sr-only">Comment settings</span>
+                            </button>
+                            
+                            <div id="dropdownComment3"
+                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownMenuIconHorizontalButton">
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </footer>
+                        <p className="text-gray-500 dark:text-gray-400">The article covers the essentials, challenges, myths and stages the UX designer should consider while creating the design strategy.</p>
+                        <div className="flex items-center mt-4 space-x-4">
+                            <button type="button"
+                                className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
+                                <svg aria-hidden="true" className="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                Reply
+                            </button>
+                        </div>
+                    </article>
+                    <article className="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                        <footer className="flex justify-between items-center mb-2">
+                            <div className="flex items-center">
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
+                                        className="mr-2 w-6 h-6 rounded-full"
+                                        src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                                        alt="Helene Engels"/>Helene Engels</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-06-23"
+                                        title="June 23rd, 2022">Jun. 23, 2022</time></p>
+                            </div>
+                            <button id="dropdownComment4Button" data-dropdown-toggle="dropdownComment4"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                type="button">
+                                <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                                    </path>
+                                </svg>
+                            </button>
+                            
+                            <div id="dropdownComment4"
+                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownMenuIconHorizontalButton">
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </footer>
+                        <p className="text-gray-500 dark:text-gray-400">Thanks for sharing this. I do came from the Backend development and explored some of the tools to design my Side Projects.</p>
+                        <div className="flex items-center mt-4 space-x-4">
+                            <button type="button"
+                                className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
+                                <svg aria-hidden="true" className="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                Reply
+                            </button>
+                        </div>
+                    </article>
+                </div>
+                </section>
+        </main>
+)
 }
 

@@ -98,7 +98,7 @@ export default async function Blog({
        
 
      ) : 
-    ( single_blog.status === 404 ? (redirect("/api/blog")):(<p>No blog found</p>) )
+    ( single_blog.status === 404 ? redirect("/blogs"): redirect("/api/auth/signin"))
     }
     </>
     </div>

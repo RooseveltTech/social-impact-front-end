@@ -38,6 +38,9 @@ export default async function Home({
     if (!session) {
         redirect("/api/auth/signin");
     }
+    else if (!params){
+        redirect("/home");
+    }
     //@ts-ignore
     const token  = session.access
     const plant_id = params.plant[1];
@@ -135,7 +138,7 @@ export default async function Home({
         </section>
         
       
-        ): (redirect("/api/auth/signin"))}
+        ): (get_air_quality.status === 404 ? redirect("/home") : redirect("/api/auth/signin"))}
         </>
       )
   
