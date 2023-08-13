@@ -3,6 +3,7 @@
 import { signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export const LoginButton = () => {
   return (
@@ -58,9 +59,25 @@ export const RegisterButton = () => {
     return (
         <button
             type="submit"
-            className="rounded bg-primary-purplish-blue text-white hover:opacity-70"
+            className="rounded bg-purplish-blue text-white hover:opacity-70"
             >
             Confirm
         </button>
     )
   }
+
+export const PostForumButton = () => {
+    const[post,setPost]=useState("")
+    return (
+        <textarea id="post" 
+        rows={6}
+        className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+        placeholder="Create a Discussion..."
+        name="post" 
+        value={post} 
+        onChange={(e)=>{setPost(e.target.value)}}
+        required>
+        
+    </textarea>
+    )
+}

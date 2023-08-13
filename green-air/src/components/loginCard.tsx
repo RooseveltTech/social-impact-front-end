@@ -24,8 +24,8 @@ export const LoginCard = ({
 
 	return (
 		<section className="flex flex-col gap-4 w-full">
-			<h2>Password</h2>
-			<p>Please choose a secure password.</p>
+			<h2>Login</h2>
+			<p>Enter your sign in credentials.</p>
 
 			<Input
 				label="Email"
