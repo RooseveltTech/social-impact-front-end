@@ -168,7 +168,7 @@ export default function Page() {
         const JSONdata = JSON.stringify(data)
      
         // API endpoint where we send form data.
-        const endpoint = process.env.BASE_URL + "/auth/register/"
+        const endpoint = 'https://backendgreenair.azurewebsites.net/auth/register/'
         // console.log(base_url)
         // Form the request for sending data to the server.
         const options = {
@@ -195,16 +195,8 @@ export default function Page() {
                 nextStep();
             }else if (response.status=== 400){
                 
-            // return(
-            //     <>
-            //     {keys.map((key:any, index:any) => (
-            //                   <li key={index}>
-            //                     <strong>{key}:</strong> {JSON.stringify(values[index])}
-            //                   </li>
-            //                 // alert(key+ ": " + values[index])
-            //     ))}
-            //     </>
-            //     );
+                setShowRequiredFields(true);
+                return;
 
             }
                  
@@ -274,7 +266,7 @@ export default function Page() {
                        <Button  
                             onClick={goBack}
                             type={'ghost'}>
-                              
+                              {'Back'}
                             </Button>
                      
 
