@@ -21,6 +21,7 @@ type Blog = {
     blog_title: string;
     first_name: string;
     last_name: string;
+    image: string;
     blog_body: string;
     created_at : string;
 }
@@ -62,7 +63,7 @@ export default async function Blogs() {
                     </address>
                     <h1 className="mb-4 text-xl font-extrabold text-gray-900 lg:mb-6 lg:text-2xl dark:text-white">{article.blog_title}</h1>
                     <figure>
-                        <img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png" alt=""/>
+                        <img src={article.image} alt=""/>
                         {/* <figcaption>Digital art by Anonymous</figcaption> */}
                     </figure>
                 </header>

@@ -17,6 +17,7 @@ type Blog = {
     last_name: string;
     blog_body: string;
     created_at : string;
+    image: string;
     count: number;
 }
 
@@ -66,7 +67,7 @@ export default async function Blog({
                     </address>
                     <h1 className="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{blog.blog_title}</h1>
                     <figure>
-                        <img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png" alt=""/>
+                        <img src={blog.image} alt=""/>
                         {/* <figcaption>Digital art by Anonymous</figcaption> */}
                     </figure>
                 </header>
