@@ -118,9 +118,9 @@ export default async function Forum(){
         }
     );
     const comments: AllComment = await get_forum_comment.json()
-
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return (
-        <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 main-block" suppressHydrationWarning> 
+        <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 main-block"> 
             <section className="bg-white dark:bg-gray-900">
                 <div className="max-w-2xl mx-auto px-4">
                 <>
@@ -152,12 +152,11 @@ export default async function Forum(){
                       <article className="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
-                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
-                                        className="mr-2 w-6 h-6 rounded-full"
-                                        src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
-                                        alt={`${forum.first_name} ${forum.last_name}`}/>{forum.first_name} {forum.last_name}</p>
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                                <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                {forum.first_name} {forum.last_name}</p>
                                 <p className="text-sm text-gray-600 dark:text-gray-400"><time
-                                        title="June 23rd, 2022">{forum.created_at}</time></p>
+                                        title="June 23rd, 2022">{new Date(forum.created_at).toDateString()}</time></p>
                             </div>
                             <button id="dropdownComment4Button" data-dropdown-toggle="dropdownComment4"
                                 className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -236,12 +235,11 @@ export default async function Forum(){
                         <article className="comment mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
-                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
-                                        className="mr-2 w-6 h-6 rounded-full"
-                                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                        alt="Jese Leos"/>{comment.first_name} {comment.last_name}</p>
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                                <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                    {comment.first_name} {comment.last_name}</p>
                                 <p className="text-sm text-gray-600 dark:text-gray-400"><time
-                                        title="February 12th, 2022">Feb. 12, 2022</time></p>
+                                        title="February 12th, 2022">{new Date(comment.created_at).toDateString()}</time></p>
                             </div>
                         </footer>
                         <p className="text-gray-500 dark:text-gray-400">{comment.body}</p>
