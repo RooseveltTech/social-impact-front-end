@@ -91,7 +91,7 @@ export const PasswordCardInfo = ({
 				}
 			/>
 
-            <Input
+            {/* <Input
 				label="Confirm Password"
 				type="password"
 				showRequired={showRequired && !userInfo.confirmPassword}
@@ -99,7 +99,7 @@ export const PasswordCardInfo = ({
 				onChange={(e: FormEvent<HTMLInputElement>) =>
 					handlePersonalInfo(e, 'confirmPassword')
 				}
-			/>
+			/> */}
 		</section>
 	);
 };

@@ -95,7 +95,7 @@ export const Input = ({
 				id={label}
 				value={value}
 				className={clsx(
-					'border border-neutral-light-gray rounded px-4 py-2 text-sm transition-all focus:outline-none focus:ring-1 focus:ring-primary-purplish-blue',
+					'border border-neutral-light-gray rounded px-4 py-2 text-base transition-all focus:outline-none focus:ring-1 focus:ring-primary-purplish-blue',
 					showRequired &&
 						required &&
 						!value &&
