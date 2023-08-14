@@ -132,7 +132,7 @@ export default async function Forum(){
                             <label htmlFor="post" className="sr-only">Your comment</label>
                             <textarea id="post" 
                                 rows={6}
-                                className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                                className="px-0 w-full text-base text-gray-900 border-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                                 placeholder="Create a Discussion..."
                                 name="post" 
                                 required>
