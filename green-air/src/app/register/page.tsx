@@ -229,7 +229,7 @@ export default function Page() {
                     </svg>
                 </button>
             </div>
-            : null}
+            : null} */}
             {showStatusCode === 400 ? showKey?.map((showKeys:string, index:number) => {
                 return(
                     <>
@@ -243,7 +243,7 @@ export default function Page() {
                     </div>
                     </>
                 )
-            }) : null}        */}
+            }) : null}       
 		<main className="h-screen flex flex-col text-neutral-cool-gray w-full lg:mx-auto lg:max-w-[58.75rem] lg:mt-20 lg:flex-row grow lg:p-4 lg:rounded-lg lg:bg-white lg:h-[33.75rem] lg:shadow">
              
 			<Sidebar currentStep={step} handleNextStep={nextStep} />
@@ -336,7 +336,7 @@ export default function Page() {
               
             
 		</main>
-        {showStatusCode === 400 ? showKey?.map((showKeys:string, index:number) => {
+        {/* {showStatusCode === 400 ? showKey?.map((showKeys:string, index:number) => {
                 return(
                     <>
                     <div key={index} id={`toast-warning`} className="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
@@ -349,7 +349,7 @@ export default function Page() {
                     </div>
                     </>
                 )
-            }) : null} 
+            }) : null}  */}
         </div>
 
 	);
