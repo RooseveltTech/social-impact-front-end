@@ -191,7 +191,7 @@ export default function Page() {
         const JSONdata = JSON.stringify(data)
      
         // API endpoint where we send form data.
-        const endpoint = "https://f021-102-67-1-25.ngrok-free.app/auth/register/"
+        const endpoint = process.env.BASE_URL + "/auth/register/"
         // console.log(base_url)
         // Form the request for sending data to the server.
         const options = {
@@ -226,7 +226,7 @@ export default function Page() {
                         //   <li key={index}>
                         //     <strong>{key}:</strong> {JSON.stringify(values[index])}
                         //   </li>
-                        alert(key+ " " + values[index])
+                        alert(key+ ": " + values[index])
        
 
 ))}
