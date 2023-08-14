@@ -210,43 +210,30 @@ export default function Page() {
         const error_field = response.json().then(function(result) {
             const keys = Object.keys(result);
             const values = Object.values(result); 
+            if (response.status === 201) {
+                nextStep();
+            }else if (response.status=== 400){
             // console.log(keys);
             return(
-            // alert(result)
-                // <div className="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                //  <svg className="flex-shrink-0 inline w-4 h-4 mr-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                //     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                // </svg>
-                // <span className="sr-only">Danger</span>
-                // <div>
-                // <span className="font-medium">Ensure that these requirements are met:</span>
-                // <ul className="mt-1.5 ml-4 list-disc list-inside">
-            <>
-            {keys.map((key:any, index:any) => (
-                        //   <li key={index}>
-                        //     <strong>{key}:</strong> {JSON.stringify(values[index])}
-                        //   </li>
-                        alert(key+ ": " + values[index])
-       
+                <>
+                {keys.map((key:any, index:any) => (
+                            //   <li key={index}>
+                            //     <strong>{key}:</strong> {JSON.stringify(values[index])}
+                            //   </li>
+                            alert(key+ ": " + values[index])
+                ))}
+                </>
+                );
 
-))}
-            </>
-            // </ul>
-            // </div>
-            // </div>
-            // alert(keys)
-            
-            );
-            
+            }
+                 
         });
     
 
      
         // Get the response data from server as JSON.
         // If server returns the name submitted, that means the form works.
-        if (response.status === 201) {
-            nextStep();
-        }else if (response.status=== 400){
+       
             // setShowRequiredFields(true);
             // return (
             //     <div>
@@ -270,7 +257,7 @@ export default function Page() {
             // <span classNameName="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{error_field}</span>
             // return;
 
-        }
+        // }
 
       }
     return (
@@ -300,16 +287,25 @@ export default function Page() {
 				{step < 3 && (
                     
 					<menu className="flex justify-between p-4 mt-auto">
-						<li>
-							<Button type="ghost" onClick={goBack}>
-								Go Back
-							</Button>
-						</li>
+                        {step >1 ? 
+                        <li>
+                            <Button  
+                            onClick={goBack}
+                            type={'secondary'}>
+                                Go Back
+                            </Button>
+                        </li> : <Button  
+                            onClick={goBack}
+                            type={'ghost'}>
+                              
+                            </Button>
+                        }
+						
 						<li>{
                              step === 2 ? 
                              <Button
 								onClick={() => handleSubmit()}
-								type={'secondary'}
+								type={'primary'}
 							>
 								{'Submit'}
 							</Button>

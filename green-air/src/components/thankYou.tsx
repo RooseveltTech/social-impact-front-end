@@ -4,12 +4,12 @@ export const ThankYou = () => {
 			<figure className="w-[60px] h-[60px]">
 				<img
 					src="./assets/images/icon-thank-you.svg"
-					alt="Form compleated, thank you!"
+					alt="Form completed, thank you!"
 				/>
 			</figure>
 			<h2>Thank you</h2>
 			<span className="text-center">
-				<p>Thanks for register!</p>
+				<p>You have registered successfully!</p>
 				<p>
 					Please login to enjoy the app
 				</p>
