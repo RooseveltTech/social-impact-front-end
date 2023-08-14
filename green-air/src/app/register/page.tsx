@@ -4,10 +4,8 @@ import { useState } from 'react'
 
 import { UserInfo, UserServiceConfiguration } from 'AppTypes';
 import { Button } from '../../components/button';
-import { RegisterButton } from '../../components/buttons.component'
 import { Sidebar } from '../../components/sidebar';
 import { PersonalInfo } from '../../components/personalInfo';
-// import { MorePersonalInfo } from '../../components/morePersonalInfo';
 import { PasswordCardInfo } from '../../components/passwordCardInfo';
 import { ThankYou } from '../../components/thankYou';
 
@@ -15,6 +13,10 @@ export default function Page() {
     const [step, setStep] = useState(1);
     const [matchPassword, setMatchPassword] = useState(false);
 	const [showRequired, setShowRequiredFields] = useState(false);
+    const [showKey, setShowKeyFields] = useState<any>();
+    const [showValue, setShowValueFields] = useState<any>();
+    const [showStatusCode, setShowStatusCode] = useState<any>();
+
 
 	const [userServiceConfiguration, setUserServiceConfiguration] =
 		useState<UserServiceConfiguration>({
@@ -41,11 +43,7 @@ export default function Page() {
         const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return emailRegex.test(email);
         }
-        
-    
   
-    
-
 	const nextStep = (onGoingStep?: number) => {
 		if (step === 3) return;
 
@@ -67,34 +65,10 @@ export default function Page() {
                 ){
                     setShowRequiredFields(true);
                     return;
-                }else if(
-                    isValidEmail(userServiceConfiguration.userInfo.email) === true
-                ){
-                    // const res:any = fetch(`https://f021-102-67-1-25.ngrok-free.app/auth/email/?email=${userServiceConfiguration.userInfo.email}`, {
-                    //     method: "GET",
-                    //     headers: {
-                    //     "content-type": "application/json",
-                    //     },
-                    // })
-                    // if (res.status===400){
-                    //     setShowRequiredFields(true);
-                    //     return;
-                    // }
-                    
-                
                 }
 				
             }
-            // else{
-            //     console.log("step 2");
-            //     if (!userServiceConfiguration.userInfo.password ||
-            //         !userServiceConfiguration.userInfo.confirmPassword){
-            //             setShowRequiredFields(true);
-            //             return;
-            //         }else if(userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword){
-            //             setMatchPassword(true);
-            //         }
-            // }
+          
         }
 		// if (step === 2 ) {
 		// 	if (
@@ -171,7 +145,10 @@ export default function Page() {
                         setShowRequiredFields(true);
                         return;
                     }
-            
+        if (userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword){
+            setShowRequiredFields(true);
+            return;
+        }
      
         // Get data from the form.
         const data = {
@@ -209,18 +186,22 @@ export default function Page() {
         const response = await fetch(endpoint, options)
         const error_field = response.json().then(function(result) {
             const keys = Object.keys(result);
+            setShowKeyFields(keys)
             const values = Object.values(result); 
+            setShowValueFields(values);
+            setShowStatusCode(response.status)
+            console.log(response.status)
             if (response.status === 201) {
                 nextStep();
             }else if (response.status=== 400){
-            // console.log(keys);
+                
             return(
                 <>
                 {keys.map((key:any, index:any) => (
-                            //   <li key={index}>
-                            //     <strong>{key}:</strong> {JSON.stringify(values[index])}
-                            //   </li>
-                            alert(key+ ": " + values[index])
+                              <li key={index}>
+                                <strong>{key}:</strong> {JSON.stringify(values[index])}
+                              </li>
+                            // alert(key+ ": " + values[index])
                 ))}
                 </>
                 );
@@ -228,41 +209,43 @@ export default function Page() {
             }
                  
         });
-    
-
-     
-        // Get the response data from server as JSON.
-        // If server returns the name submitted, that means the form works.
-       
-            // setShowRequiredFields(true);
-            // return (
-            //     <div>
-            //       <h2>JSON Keys and Values</h2>
-            //       <ul>
-            //         {keys.map((key, index) => (
-            //           <li key={index}>
-            //             <strong>{key}:</strong> {JSON.stringify(values[index])}
-            //           </li>
-            //         ))}
-            //       </ul>
-            //     </div>
-            //   );
-            // console.log(error_field)
-            // {keys.map((key, index) => (
-            //     // <li key={index}>
-            //       alert(key)
-            //     // {/* </li> */}
-            //   ))}
-            
-            // <span classNameName="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{error_field}</span>
-            // return;
-
-        // }
-
       }
     return (
-        
+       
+      <div className="login-register items-center w-full flex flex-col text-neutral-cool-gray w-full lg:mx-auto lg:mt-20 grow lg:p-4 lg:rounded-lg lg:shadow">
+            {userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword ? 
+                <div id="toast-warning" className="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+                <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
+                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+                    </svg>
+                    <span className="sr-only">Warning icon</span>
+                </div>
+                <div className="ml-3 text-sm font-normal">Password do not match.</div>
+                <button type="button" className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-warning" aria-label="Close">
+                    <span className="sr-only">Close</span>
+                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                </button>
+            </div>
+            : null}
+            {showStatusCode === 400 ? showKey?.map((showKeys:string, index:number) => {
+                return(
+                    <>
+                    <div key={index} id={`toast-warning`} className="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+                        <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
+                            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+                            </svg>
+                        </div>
+                        <div className="ml-3 text-sm font-normal">{showKeys}: {showValue[index]}</div>
+                    </div>
+                    </>
+                )
+            }) : null}       
 		<main className="h-screen flex flex-col text-neutral-cool-gray w-full lg:mx-auto lg:max-w-[58.75rem] lg:mt-20 lg:flex-row grow lg:p-4 lg:rounded-lg lg:bg-white lg:h-[33.75rem] lg:shadow">
+             
 			<Sidebar currentStep={step} handleNextStep={nextStep} />
 			<div className="px-4 relative bg-neutral-magnolia  lg:bg-transparent lg:flex lg:flex-col lg:w-full ">
 				<form onSubmit={handleSubmit} className="bg-neutral-alabaster px-6 py-9 rounded-[0.625rem] -translate-y-[4.5rem] flex w-full grow [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-primary-marine-blue [&_h3]:font-medium [&_h3]:text-primary-marine-blue lg:bg-transparent lg:translate-y-0 ">
@@ -322,6 +305,18 @@ export default function Page() {
 					</menu>
 				)}
 			</div>
+            
+                        {/* {showKey.map((key:any, index:any) => (
+                            <li key={index}>
+                            <strong>{key}:</strong> {JSON.stringify(ShowValue[index])}
+                            </li>
+                        // alert(key+ ": " + values[index])
+            ))} */}
+            
+           
+            
 		</main>
+        </div>
+
 	);
 }

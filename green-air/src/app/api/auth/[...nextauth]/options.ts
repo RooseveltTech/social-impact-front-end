@@ -30,7 +30,8 @@ export const options: NextAuthOptions = {
                         return user
                     }else{
                         // Return null if user data could not be retrieved
-                        return null
+                        return user
+                        // throw new Error( JSON.stringify({ errors: user.errors, status: false }))
                     }
                     
                     

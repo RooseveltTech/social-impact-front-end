@@ -38,7 +38,7 @@ export const PasswordCardInfo = ({
 	
 	return (
 		<section className="flex flex-col gap-4 w-full">
-			<h2>Password</h2>
+			<h2>More Info</h2>
 			<p>Please choose a secure password.</p>
             
 
@@ -64,6 +64,7 @@ export const PasswordCardInfo = ({
 					handleCountry(e, 'countryName')
 				}
                 >
+                    <option value="">Select Country</option>
                 {COUNTRIES.map((country) => {
                 return <option value={country.name}>{country.name} 
                         
@@ -87,6 +88,16 @@ export const PasswordCardInfo = ({
 				value={userInfo.password}
 				onChange={(e: FormEvent<HTMLInputElement>) =>
 					handlePersonalInfo(e, 'password')
+				}
+			/>
+
+            <Input
+				label="Confirm Password"
+				type="password"
+				showRequired={showRequired && !userInfo.confirmPassword}
+				value={userInfo.confirmPassword}
+				onChange={(e: FormEvent<HTMLInputElement>) =>
+					handlePersonalInfo(e, 'confirmPassword')
 				}
 			/>
 		</section>

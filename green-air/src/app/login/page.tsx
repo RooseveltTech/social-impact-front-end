@@ -8,12 +8,15 @@ import { UserInfo, UserServiceConfiguration } from 'AppTypes';
 import { Button } from '../../components/button';
 import { LoginSidebar } from '../../components/loginSidebar';
 import { LoginCard } from '../../components/loginCard';
-
+import { useRouter } from 'next/router'
 
 
 export default function Page() {
 	const [showRequired, setShowRequiredFields] = useState(false);
-
+    const [showKey, setShowKeyFields] = useState<any>();
+    const [showValue, setShowValueFields] = useState<any>();
+    const [showStatusCode, setShowStatusCode] = useState<any>();
+    const router = useRouter()
 	const [userServiceConfiguration, setUserServiceConfiguration] =
 		useState<UserServiceConfiguration>({
 			userInfo: {
@@ -35,7 +38,25 @@ export default function Page() {
 	const updateUserInfo = (userInfo: UserInfo) => {
 		setUserServiceConfiguration({ ...userServiceConfiguration, userInfo });
 	};
+    function showError(){
+        console.log("I am here")
+    }
     return (
+        <div className="login-register items-center w-full flex flex-col text-neutral-cool-gray w-full lg:mx-auto lg:mt-20 grow lg:p-4 lg:rounded-lg lg:shadow">
+             {showStatusCode === 400 ? showKey?.map((showKeys:string, index:number) => {
+                return(
+                    <>
+                    <div key={index} id={`toast-warning`} className="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+                        <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
+                            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+                            </svg>
+                        </div>
+                        <div className="ml-3 text-sm font-normal">{showKeys}: {showValue[index]}</div>
+                    </div>
+                    </>
+                )
+            }) : null} 
 		<main className="h-screen flex flex-col text-neutral-cool-gray w-full lg:mx-auto lg:max-w-[58.75rem] lg:mt-20 lg:flex-row grow lg:p-4 lg:rounded-lg lg:bg-white lg:h-[33.75rem] lg:shadow">
 			<LoginSidebar  />
 			<div className="px-4 relative bg-neutral-magnolia  lg:bg-transparent lg:flex lg:flex-col lg:w-full ">
@@ -60,9 +81,18 @@ export default function Page() {
                                     { 
                                         email: userServiceConfiguration.userInfo.email,
                                         password: userServiceConfiguration.userInfo.password,
-                                        redirect: true,
-                                        callbackUrl: '/home',
-                                     })}
+                                        redirect: false,
+                                        callbackUrl: '/',
+                                     }).then((response:any) => {
+                                        // stuff is { error: "CredentialsSignin", status: 200, ok: true, url: null } at this point
+                                        console.log('stuff in', response.status);
+                                        response.status === 200 ? 
+                                        router.push("/home"): 
+                                        response.status === 400 ?
+                                        showError():
+                                        null
+                                        
+                                    })}
 							  
 								type={'primary'}
 							>
@@ -73,5 +103,6 @@ export default function Page() {
 				
 			</div>
 		</main>
+        </div>
 	);
 }
