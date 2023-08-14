@@ -270,20 +270,14 @@ export default function Page() {
 				{step < 3 && (
                     
 					<menu className="flex justify-between p-4 mt-auto">
-                        {step >1 ? 
-                        <li>
-                            <Button  
-                            onClick={goBack}
-                            type={'secondary'}>
-                                Go Back
-                            </Button>
-                        </li> : <Button  
+                        
+                       <Button  
                             onClick={goBack}
                             type={'ghost'}>
                               
                             </Button>
-                        }
-						
+                     
+
 						<li>{
                              step === 2 ? 
                              <Button
