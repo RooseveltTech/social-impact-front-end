@@ -145,10 +145,10 @@ export default function Page() {
                         setShowRequiredFields(true);
                         return;
                     }
-        if (userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword){
-            setShowRequiredFields(true);
-            return;
-        }
+        // if (userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword){
+        //     setShowRequiredFields(true);
+        //     return;
+        // }
      
         // Get data from the form.
         const data = {
@@ -313,7 +313,7 @@ export default function Page() {
                         // alert(key+ ": " + values[index])
             ))} */}
             
-            {userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword ? 
+            {/* {userServiceConfiguration.userInfo.password!==userServiceConfiguration.userInfo.confirmPassword ? 
                 <div id="toast-warning" className="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
                 <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
                     <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -329,7 +329,7 @@ export default function Page() {
                     </svg>
                 </button>
             </div>
-            : null}
+            : null} */}
             {/* <div className="items-center w-full flex flex-col text-neutral-cool-gray w-full lg:mx-auto lg:mt-20 grow lg:p-4 lg:rounded-lg lg:shadow">
             
             </div> */}
