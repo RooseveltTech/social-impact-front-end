@@ -34,7 +34,6 @@ export default async function Blogs() {
                 },
                 cache: 'no-store',
         },
-        // "default" | "force-cache" | "no-cache" | "no-store" | "only-if-cached" | "reload";
       );
       const blog: Blogs = await blogs.json()
      
