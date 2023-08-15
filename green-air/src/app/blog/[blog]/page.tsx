@@ -3,6 +3,7 @@ import Link from 'next/link'
 // import { options } from '../api/auth/[...nextauth]/options';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from "next/navigation";
+import parse from 'html-react-parser';
 
 
 import {
@@ -72,10 +73,10 @@ export default async function Blog({
                         {/* <figcaption>Digital art by Anonymous</figcaption> */}
                     </figure>
                 </header>
-                        <p>
-                            {blog.blog_body}
+                        <div>
+                        {parse(blog.blog_body || '')}
                         
-                         </p>
+                         </div>
                 <br></br>
                 {blog.count==0 ? 
                 <button type="button" className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
