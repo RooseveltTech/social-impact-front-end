@@ -42,7 +42,7 @@ export default async function Home() {
     // }
     //@ts-ignore
     const token  = session.access
-    // console.log(token, "THIS IS TOKEN")
+    
 
     const get_air_quality = await fetch(
         process.env.BASE_URL + '/air/v1/air-quality/',{
@@ -50,6 +50,7 @@ export default async function Home() {
                     "content-type": 'application/json',
                     "Authorization": `Bearer ${token}`,
                 },
+                cache: 'no-store',
         }
       );
       const aqi: Aqi = await get_air_quality.json()

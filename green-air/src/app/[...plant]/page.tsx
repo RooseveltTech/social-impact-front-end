@@ -50,10 +50,11 @@ export default async function Home({
                     "content-type": 'application/json',
                     "Authorization": `Bearer ${token}`,
                 },
+                cache: 'no-store',
         }
       );
       const plant: Plant = await get_air_quality.json()
-      console.log(plant)
+      
       return (
         <>
         {get_air_quality.status === 200 ? (

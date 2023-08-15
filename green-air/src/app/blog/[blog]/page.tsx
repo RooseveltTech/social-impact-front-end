@@ -38,10 +38,11 @@ export default async function Blog({
                 "headers": {
                     "content-type": 'application/json',
                 },
+                cache: 'no-store',
         }
       );
       const blog: Blog = await single_blog.json()
-      console.log(blog)
+     
     //   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return (
         <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 main-block">

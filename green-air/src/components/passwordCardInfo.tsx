@@ -63,7 +63,7 @@ export const PasswordCardInfo = ({
                 onChange={(e: FormEvent<HTMLSelectElement>) =>
 					handleCountry(e, 'countryName')
 				}
-                >
+                 required>
                     <option value="">Select Country</option>
                 {COUNTRIES.map((country) => {
                 return <option value={country.name}>{country.name} 

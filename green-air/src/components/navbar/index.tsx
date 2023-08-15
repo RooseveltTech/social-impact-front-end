@@ -20,6 +20,7 @@ export default async function Navigation() {
                     "content-type": 'application/json',
                     "Authorization": `Bearer ${token}`,
                 },
+                cache: 'no-store',
         }
       );
     return (

@@ -47,13 +47,14 @@ export default async function Forum() {
     // }
     //@ts-ignore
     const token = session.access
-    // console.log(token, "THIS IS TOKEN")
+   
     const active = await fetch(
         process.env.BASE_URL + '/air/v1/check_user/', {
         "headers": {
             "content-type": 'application/json',
             "Authorization": `Bearer ${token}`,
         },
+        cache: 'no-store',
     }
     );
     active.status === 401 ? redirect("/login") : null;
@@ -62,7 +63,7 @@ export default async function Forum() {
     async function postForum(formData: FormData) {
         'use server'
 
-        console.log(formData.get('post'))
+        
         await fetch(
             process.env.BASE_URL + '/air/v1/forum_post/', {
             method: 'POST',
@@ -70,6 +71,7 @@ export default async function Forum() {
                 "content-type": 'application/json',
                 "Authorization": `Bearer ${token}`,
             },
+            cache: 'no-store',
             body: JSON.stringify({ "post": formData.get('post') })
         }
         );
@@ -82,15 +84,16 @@ export default async function Forum() {
             "content-type": 'application/json',
             "Authorization": `Bearer ${token}`,
         },
+        cache: 'no-store',
     }
     );
     const forums: AllForum = await get_forum_post.json()
-    //   console.log(forums)
+  
 
     async function postComment(formData: FormData) {
         'use server'
 
-        // console.log(formData.get('post'))
+        
         await fetch(
             process.env.BASE_URL + '/air/v1/forum_comment/', {
             method: 'POST',
@@ -98,6 +101,7 @@ export default async function Forum() {
                 "content-type": 'application/json',
                 "Authorization": `Bearer ${token}`,
             },
+            cache: 'no-store',
             body: JSON.stringify(
                 {
                     "comment": formData.get('comment'),
@@ -117,6 +121,7 @@ export default async function Forum() {
             "content-type": 'application/json',
             "Authorization": `Bearer ${token}`,
         },
+        cache: 'no-store',
     }
     );
     const comments: AllComment = await get_forum_comment.json()

@@ -23,21 +23,20 @@ export const options: NextAuthOptions = {
                         },
                     })
                     const user = await res.json()
-                    console.log(user)
+                    
                     // If no error and we have user data, return it
                     if (res.ok && user) {
-                        // console.log(user)
+                        
                         return user
                     }else{
                         // Return null if user data could not be retrieved
                         return user
                         // throw new Error( JSON.stringify({ errors: user.errors, status: false }))
                     }
-                    
-                    
+                                 
                     
                 } catch (err) {
-                    console.log(err);
+                    return err;
                 }
             }
         }),

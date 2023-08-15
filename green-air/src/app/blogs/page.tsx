@@ -3,8 +3,7 @@ import Link from 'next/link'
 import { options } from '../api/auth/[...nextauth]/options';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from "next/navigation";
-
-
+import parse from 'html-react-parser';
 import {
     LoginButton,
     ProfileButton,
@@ -30,12 +29,15 @@ type Blog = {
 export default async function Blogs() {
     const blogs = await fetch(
         process.env.BASE_URL + '/air/v1/blog/', {
-                "headers": {
+                headers: {
                     "content-type": 'application/json',
                 },
+                cache: 'no-store',
         },
+        // "default" | "force-cache" | "no-cache" | "no-store" | "only-if-cached" | "reload";
       );
       const blog: Blogs = await blogs.json()
+     
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return (
         <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 main-block" >
@@ -45,7 +47,7 @@ export default async function Blogs() {
         <div className="justify-between px-4 mx-auto max-w-screen-xl">
 
         {blog.data.map((article, index) => (
-            
+
             <article key={index} className="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert blog-page">
                 <header className="mb-4 lg:mb-6 not-format">
                     <address className="flex items-center mb-6 not-italic">
@@ -70,8 +72,9 @@ export default async function Blogs() {
              
                 {
                         article.blog_body.length > 400 ? 
-                        <p>
-                            {article.blog_body.substring(0,400)}
+                        <div>
+                            {parse(article.blog_body.substring(0,400)+'.....'|| '')}
+                            {/* {article.blog_body.substring(0,400)} */}
                             <br></br>
                             <Link href={{
                                     pathname: `/blog/${article.id}`,
@@ -79,14 +82,14 @@ export default async function Blogs() {
                                      Read more
                                     <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                             </Link>
-                        </p>
+                        </div>
                          
                         : 
                     (
                         
-                        <p>
-                           {article.blog_body} 
-                        </p>
+                        <div>
+                           {parse(article.blog_body || '')} 
+                        </div>
                     )}
                 
             </article>
