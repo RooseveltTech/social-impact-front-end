@@ -1,7 +1,6 @@
 "use client";
 import Link from 'next/link'
 import { useState } from 'react'
-
 import { UserInfo, UserServiceConfiguration } from 'AppTypes';
 import { Button } from '../../components/button';
 import { Sidebar } from '../../components/sidebar';
@@ -10,14 +9,13 @@ import { PasswordCardInfo } from '../../components/passwordCardInfo';
 import { ThankYou } from '../../components/thankYou';
 
 
-export default function Page() {
+export default function Register() {
     const [step, setStep] = useState(1);
     const [matchPassword, setMatchPassword] = useState(false);
 	const [showRequired, setShowRequiredFields] = useState(false);
     const [showKey, setShowKeyFields] = useState<any>();
     const [showValue, setShowValueFields] = useState<any>();
     const [showStatusCode, setShowStatusCode] = useState<any>();
-
 
 	const [userServiceConfiguration, setUserServiceConfiguration] =
 		useState<UserServiceConfiguration>({
@@ -33,12 +31,13 @@ export default function Page() {
                 password: '',
                 confirmPassword: '',
 			}
-
+            
 		});
-
+   
 	const updateUserInfo = (userInfo: UserInfo) => {
 		setUserServiceConfiguration({ ...userServiceConfiguration, userInfo });
 	};
+    
 
     function isValidEmail(email: any): boolean {
         const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -94,8 +93,6 @@ export default function Page() {
                         return;
                     }
         
-        const { headers } = await import("next/headers");
-        const ip = headers().get("x-forwarded-for");
      
         // Get data from the form.
         const data = {
@@ -108,8 +105,8 @@ export default function Page() {
             city: userServiceConfiguration.userInfo.city,
             country_code: userServiceConfiguration.userInfo.countryCode,
             password: userServiceConfiguration.userInfo.password,
-            confirm_password: userServiceConfiguration.userInfo.confirmPassword,
-            ip_address: ip
+            confirm_password: userServiceConfiguration.userInfo.confirmPassword
+            // ip_address: ip
         }
      
         // Send the data to the server in JSON format.

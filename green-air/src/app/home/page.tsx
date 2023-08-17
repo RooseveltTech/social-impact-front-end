@@ -70,7 +70,7 @@ export default async function Home() {
                         aqi.aqi_color == "bg-success" ? 
                         <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-white-700 rounded-lg border-2 border-green-200">
                             <svg className="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                <path stroke="green" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                <path stroke="green" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                             </svg>
                             <span className="sr-only">Notifications</span>
                             <div className="absolute inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-green-700 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{aqi.aqi}</div>
@@ -78,7 +78,7 @@ export default async function Home() {
                         aqi.aqi_color == "bg-warning" ?  
                         <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-white-700 rounded-lg border-2 border-yellow-200">
                             <svg className="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                <path stroke="yellow" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                <path stroke="yellow" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                             </svg>
                             <span className="sr-only">Notifications</span>
                             <div className="absolute inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-yellow-700 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{aqi.aqi}</div>
@@ -86,7 +86,7 @@ export default async function Home() {
                         aqi.aqi_color == "bg-orange" ? 
                         <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-white-700 rounded-lg border-2 border-orange-200">
                             <svg className="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                <path stroke="orange" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                <path stroke="orange" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                             </svg>
                             <span className="sr-only">Notifications</span>
                         <div className="absolute inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-orange-700 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{aqi.aqi}</div>
@@ -94,7 +94,7 @@ export default async function Home() {
                         aqi.aqi_color == "bg-danger" ?
                         <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-white-700 rounded-lg border-2 border-red-500">
                             <svg className="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                <path stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                <path stroke="red" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                             </svg>
                             <span className="sr-only">Notifications</span>
                             <div className="absolute inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-red-700 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{aqi.aqi}</div>
@@ -102,7 +102,7 @@ export default async function Home() {
                         aqi.aqi_color == "bg-purple" ? 
                         <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-white-700 rounded-lg border-2 border-purple-500">
                              <svg className="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                 <path stroke="purple" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                 <path stroke="purple" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                              </svg>
                             <span className="sr-only">Notifications</span>
                             <div className="absolute inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-purple-700 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{aqi.aqi}</div>
@@ -110,7 +110,7 @@ export default async function Home() {
                          : (
                         <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-white-700 rounded-lg border-2 border-pink-700">
                             <svg className="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                <path stroke="pink" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                <path stroke="pink" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                             </svg>
                            <span className="sr-only">Notifications</span>
                            <div className="absolute inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-pink-700 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{aqi.aqi}</div>
@@ -152,7 +152,7 @@ export default async function Home() {
                                     pathname: `/plant/${plant.id}`,
                                     }} className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
                                     Read more
-                                    <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                    <svg className="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                 </Link>
                             </div>
                         </article>  

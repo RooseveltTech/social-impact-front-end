@@ -168,7 +168,7 @@ export default async function Forum() {
                                     <footer className="flex justify-between items-center mb-2">
                                         <div className="flex items-center">
                                             <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                                                <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                                 {forum.first_name} {forum.last_name}</p>
                                             
                                         </div>
@@ -186,7 +186,7 @@ export default async function Forum() {
                                     <div className="flex items-center mt-4 space-x-4">
                                         <button type="button" data-modal-target={`authentication-modal${index}`} data-modal-toggle={`authentication-modal${index}`}
                                             className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
-                                            <svg aria-hidden="true" className="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                            <svg aria-hidden="true" className="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                                             Reply
                                         </button>
                                         <div id={`authentication-modal${index}`} tabIndex={-1} aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -195,7 +195,7 @@ export default async function Forum() {
                                                 <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                     <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide={`authentication-modal${index}`}>
                                                         <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                                         </svg>
                                                         <span className="sr-only">Close modal</span>
                                                     </button>
@@ -230,7 +230,7 @@ export default async function Forum() {
                                             <footer className="flex justify-between items-center mb-2">
                                                 <div className="flex items-center">
                                                     <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                                                        <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                        <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                                         {comment.first_name} {comment.last_name}</p>
                                                     <p className="text-sm text-gray-600 dark:text-gray-400"><time
                                                         title="February 12th, 2022"></time></p>

@@ -11,7 +11,7 @@ import { LoginCard } from '../../components/loginCard';
 
 
 
-export default function Page() {
+export default function Login() {
 	const [showRequired, setShowRequiredFields] = useState(false);
 
 	const [userServiceConfiguration, setUserServiceConfiguration] =

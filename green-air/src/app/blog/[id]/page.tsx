@@ -28,10 +28,10 @@ type Blog = {
 export default async function Blog({
     params,
   }: {
-    params: { blog: string };
+    params: { id: string };
   }) {
-    
-    const blog_id = params.blog[0];
+      
+      const blog_id = params.id[0];
 
 
     const single_blog = await fetch(
@@ -42,9 +42,16 @@ export default async function Blog({
                 cache: 'no-store',
         }
       );
+      if(single_blog.ok===false){
+        return (
+            <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 main-block">
+                <div className="flex justify-between px-4 mx-auto max-w-screen-xl">
+                    NOT FOUND
+                </div>
+            </main>
+        )
+    }
       const blog: Blog = await single_blog.json()
-     
-    //   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return (
         <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 main-block">
         <div className="flex justify-between px-4 mx-auto max-w-screen-xl">
@@ -56,7 +63,6 @@ export default async function Blog({
                 <header className="mb-4 lg:mb-6 not-format">
                     <address className="flex items-center mb-6 not-italic">
                         <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                            {/* <img className="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos"/> */}
                             <div className="mr-4 w-16 h-16 rounded-full inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                 <span className="font-medium text-gray-600 dark:text-gray-300">{blog.first_name.substring(0,1)}{blog.last_name.substring(0,1)}</span>
                             </div>
