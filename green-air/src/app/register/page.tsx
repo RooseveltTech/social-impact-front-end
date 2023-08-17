@@ -8,19 +8,7 @@ import { Sidebar } from '../../components/sidebar';
 import { PersonalInfo } from '../../components/personalInfo';
 import { PasswordCardInfo } from '../../components/passwordCardInfo';
 import { ThankYou } from '../../components/thankYou';
-import { headers } from "next/headers";
 
-//  export const getServerSideProps = async ({ req }) => {
-//         const forwarded = req.headers['x-forwarded-for'];
-
-//         const ip = typeof forwarded === 'string' ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
-
-//         console.log(ip);
-
-//         return {
-//             props: { ip },
-//         };
-//         };
 
 export default function Page() {
     const [step, setStep] = useState(1);
@@ -105,7 +93,8 @@ export default function Page() {
                         setShowRequiredFields(true);
                         return;
                     }
-
+        
+        const { headers } = await import("next/headers");
         const ip = headers().get("x-forwarded-for");
      
         // Get data from the form.
