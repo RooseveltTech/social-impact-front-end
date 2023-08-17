@@ -1,15 +1,4 @@
 
-import Link from 'next/link'
-import { options } from '../api/auth/[...nextauth]/options';
-import { getServerSession } from 'next-auth/next';
-import { redirect } from "next/navigation";
-
-
-import {
-    LoginButton,
-    ProfileButton,
-    RegisterButton,
-  } from "../../components/buttons.component";
 
 export default async function About() {
  
