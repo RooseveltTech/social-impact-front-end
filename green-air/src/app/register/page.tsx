@@ -8,6 +8,19 @@ import { Sidebar } from '../../components/sidebar';
 import { PersonalInfo } from '../../components/personalInfo';
 import { PasswordCardInfo } from '../../components/passwordCardInfo';
 import { ThankYou } from '../../components/thankYou';
+import { headers } from "next/headers";
+
+//  export const getServerSideProps = async ({ req }) => {
+//         const forwarded = req.headers['x-forwarded-for'];
+
+//         const ip = typeof forwarded === 'string' ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
+
+//         console.log(ip);
+
+//         return {
+//             props: { ip },
+//         };
+//         };
 
 export default function Page() {
     const [step, setStep] = useState(1);
@@ -82,6 +95,8 @@ export default function Page() {
 		if (step === 1) return;
 		setStep((step) => step - 1);
 	};
+
+   
     const handleSubmit = async () => {
         // Stop the form from submitting and refreshing the page.
         // event.preventDefault()
@@ -90,6 +105,8 @@ export default function Page() {
                         setShowRequiredFields(true);
                         return;
                     }
+
+        const ip = headers().get("x-forwarded-for");
      
         // Get data from the form.
         const data = {
@@ -102,7 +119,8 @@ export default function Page() {
             city: userServiceConfiguration.userInfo.city,
             country_code: userServiceConfiguration.userInfo.countryCode,
             password: userServiceConfiguration.userInfo.password,
-            confirm_password: userServiceConfiguration.userInfo.confirmPassword
+            confirm_password: userServiceConfiguration.userInfo.confirmPassword,
+            ip_address: ip
         }
      
         // Send the data to the server in JSON format.

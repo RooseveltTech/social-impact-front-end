@@ -3,8 +3,7 @@ import Link from 'next/link'
 import { options } from '../api/auth/[...nextauth]/options';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from "next/navigation";
-import dynamic from 'next/dynamic';
-// import { PostForumButton } from '../../components/buttons.component';
+import { headers } from "next/headers";
 
 type AllForum = {
     data: Forum[]
@@ -36,17 +35,26 @@ type Comment = {
 }
 
 export default async function Forum() {
-
+    
     const session = await getServerSession(options)
     if (!session) {
         redirect("/api/auth/signin");
     }
-    // else {
-    // Fixes: Hydration failed because the initial UI does not match what was rendered on the server.
-    // const NoSSR = dynamic(() => postForum(formData), { ssr: false })
-    // }
+
+
     //@ts-ignore
     const token = session.access
+
+    const ip = headers().get("x-forwarded-for");
+    await fetch(
+        process.env.BASE_URL + `/air/v1/get_ip_address/?ip_address=${ip}`, {
+        "headers": {
+            "content-type": 'application/json',
+            "Authorization": `Bearer ${token}`,
+        },
+        cache: 'no-store',
+    }
+    );
    
     const active = await fetch(
         process.env.BASE_URL + '/air/v1/check_user/', {

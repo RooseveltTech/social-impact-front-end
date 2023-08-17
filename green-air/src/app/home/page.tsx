@@ -3,13 +3,7 @@ import Link from 'next/link'
 import { options } from '../api/auth/[...nextauth]/options';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from "next/navigation";
-
-
-import {
-    LoginButton,
-    ProfileButton,
-    RegisterButton,
-  } from "../../components/buttons.component";
+import { headers } from "next/headers";
 
 type Aqi = {
     aqi: number;
@@ -43,6 +37,16 @@ export default async function Home() {
     //@ts-ignore
     const token  = session.access
     
+    const ip = headers().get("x-forwarded-for");
+    await fetch(
+        process.env.BASE_URL + `/air/v1/get_ip_address/?ip_address=${ip}`, {
+        "headers": {
+            "content-type": 'application/json',
+            "Authorization": `Bearer ${token}`,
+        },
+        cache: 'no-store',
+    }
+    );
 
     const get_air_quality = await fetch(
         process.env.BASE_URL + '/air/v1/air-quality/',{
