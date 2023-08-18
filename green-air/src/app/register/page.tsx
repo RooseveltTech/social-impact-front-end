@@ -7,15 +7,16 @@ import { Sidebar } from '../../components/sidebar';
 import { PersonalInfo } from '../../components/personalInfo';
 import { PasswordCardInfo } from '../../components/passwordCardInfo';
 import { ThankYou } from '../../components/thankYou';
+import { LoadLoginButton } from '@/components/buttons.component';
 
 
 export default function Register() {
     const [step, setStep] = useState(1);
-    const [matchPassword, setMatchPassword] = useState(false);
 	const [showRequired, setShowRequiredFields] = useState(false);
     const [showKey, setShowKeyFields] = useState<any>();
     const [showValue, setShowValueFields] = useState<any>();
     const [showStatusCode, setShowStatusCode] = useState<any>();
+    const [loading, setLoading] = useState(false);
 
 	const [userServiceConfiguration, setUserServiceConfiguration] =
 		useState<UserServiceConfiguration>({
@@ -182,7 +183,6 @@ export default function Register() {
                             userInfo={userServiceConfiguration.userInfo}
                             updateUserInfo={updateUserInfo}
                             showRequired={showRequired}
-                            matchPassword={matchPassword}
 						/>
 					)}
 					
@@ -202,10 +202,28 @@ export default function Register() {
 						<li>{
                              step === 2 ? 
                              <Button
-								onClick={() => handleSubmit()}
-								type={'primary'}
+								onClick={() => 
+                                    
+                                    setTimeout(()=>{
+                                        if (
+                                            !userServiceConfiguration.userInfo.countryName ||
+                                            !userServiceConfiguration.userInfo.city ||
+                                            !userServiceConfiguration.userInfo.password 
+                                        ){
+                                            setShowRequiredFields(true);
+                                            return;
+                                        }
+
+                                        setLoading(true);
+                                        handleSubmit()
+                                        
+                                    }, 1000)
+                                }
+								type={!loading ? 'primary' : 'loading'}
+                                disabled={loading}
 							>
-								{'Submit'}
+								{ loading && <LoadLoginButton/>}
+                                {!loading && 'Register'} 
 							</Button>
                             : (
                             <Button

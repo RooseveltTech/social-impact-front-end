@@ -28,7 +28,7 @@ export const LoginCard = ({
 			<p>Enter your sign in credentials.</p>
 
 			<Input
-				label="Email"
+				label="Email Address"
 				type="email"
 				showRequired={showRequired && !userInfo.email}
 				value={userInfo.email}

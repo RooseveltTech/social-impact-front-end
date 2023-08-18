@@ -1,11 +1,13 @@
 import clsx from 'clsx';
 
 interface ButtonProps {
-	type?: 'primary' | 'secondary' | 'ghost';
+	type?: 'primary' | 'secondary' | 'ghost' | 'loading';
 	size?: 'sm' | 'md' | 'lg';
 	children: React.ReactNode;
 	className?: string;
 	onClick?: () => void;
+    disabled?: boolean;
+    onSubmit?: () => void;
 }
 
 export const Button = ({
@@ -14,13 +16,18 @@ export const Button = ({
 	size = 'md',
 	className,
 	onClick,
+    disabled,
+    onSubmit,
+
 }: ButtonProps) => {
 	const typeClasses =
 		type === 'primary'
 			? 'bg-primary-purplish-blue text-white hover:opacity-70'
 			: type === 'secondary'
 			? 'bg-primary-marine-blue text-white hover:opacity-70'
-			: 'bg-transparent text-neutral-cool-gray ';
+			: type == 'ghost'
+            ? 'bg-transparent text-neutral-cool-gray'
+            : 'bg-primary-marine-blue text-white hover:opacity-70'
 	const sizeClasses =
 		size === 'sm'
 			? 'text-sm p-0'
@@ -31,6 +38,8 @@ export const Button = ({
 		<button
 			onClick={onClick}
 			className={clsx(`rounded `, typeClasses, sizeClasses, className)}
+            disabled={disabled}
+            onSubmit={onSubmit}
 		>
 			{children}
 		</button>

@@ -10,14 +10,14 @@ interface PersonalInfoProps {
 	userInfo: UserInfo;
 	updateUserInfo: (userInfo: UserInfo) => void;
 	showRequired: boolean;
-    matchPassword: boolean;
+    required?: boolean;
 }
 
 export const PasswordCardInfo = ({
 	userInfo,
 	updateUserInfo,
 	showRequired,
-    matchPassword,
+    required = true,
 }: PersonalInfoProps) => {
 	const handlePersonalInfo = (
 		event: FormEvent<HTMLInputElement>,
@@ -41,7 +41,6 @@ export const PasswordCardInfo = ({
 			<h2>More Info</h2>
 			<p>Please choose a secure password.</p>
             
-
              <div className="flex flex-col font-medium">
                 <span className="inline-flex justify-between">
                     <label
@@ -51,6 +50,12 @@ export const PasswordCardInfo = ({
                     >
                         Country
                     </label> 
+                    {
+                        required && showRequired ? 
+                        <p className="text-primary-starberry-red leading-3">
+                            This field is required
+                        </p> :""
+                    }
                 </span>
                 <select
                 

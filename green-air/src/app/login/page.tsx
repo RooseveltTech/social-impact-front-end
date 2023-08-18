@@ -1,19 +1,18 @@
 "use client";
 
-import Link from 'next/link'
 import { useState } from 'react'
-import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { signIn } from "next-auth/react";
 import { UserInfo, UserServiceConfiguration } from 'AppTypes';
 import { Button } from '../../components/button';
 import { LoginSidebar } from '../../components/loginSidebar';
-import { LoginCard } from '../../components/loginCard';
+import { LoginCard } from '@/components/loginCard';
+import { LoadLoginButton } from '@/components/buttons.component';
 
 
 
 export default function Login() {
 	const [showRequired, setShowRequiredFields] = useState(false);
-
+    const [loading, setLoading] = useState(false);
 	const [userServiceConfiguration, setUserServiceConfiguration] =
 		useState<UserServiceConfiguration>({
 			userInfo: {
@@ -32,6 +31,7 @@ export default function Login() {
 
 		});
 
+
 	const updateUserInfo = (userInfo: UserInfo) => {
 		setUserServiceConfiguration({ ...userServiceConfiguration, userInfo });
 	};
@@ -45,28 +45,39 @@ export default function Login() {
                         userInfo={userServiceConfiguration.userInfo}
                         updateUserInfo={updateUserInfo}
                         showRequired={showRequired}
-                    />
-					
-					
+                    />		
 				</form>
-				
 					<menu className="flex justify-between p-4 mt-auto">
 						<li>
 							
 						</li>
 						<li>
+                            
 							<Button
-                                onClick={() => signIn('credentials', 
-                                    { 
-                                        email: userServiceConfiguration.userInfo.email,
-                                        password: userServiceConfiguration.userInfo.password,
-                                        redirect: true,
-                                        callbackUrl: '/home',
-                                     })}
-							  
-								type={'primary'}
-							>
-                                Login
+                                onClick={() => 
+                                    setTimeout(()=>{
+                                        if (
+                                            !userServiceConfiguration.userInfo.email ||
+                                            !userServiceConfiguration.userInfo.password 
+                                        ){
+                                            setShowRequiredFields(true);
+                                            return;
+                                        }
+                                        setLoading(true);
+                                        signIn('credentials', 
+                                        { 
+                                            email: userServiceConfiguration.userInfo.email,
+                                            password: userServiceConfiguration.userInfo.password,
+                                            redirect: true,
+                                            callbackUrl: '/home',
+                                        })
+                                    }, 1000)}
+                                     disabled={loading}
+								type={!loading ? 'primary' : 'loading'}
+                                >
+                                 { loading && <LoadLoginButton/>}
+                                
+                                {!loading && 'Login'} 
 							</Button>
 						</li>
 					</menu>

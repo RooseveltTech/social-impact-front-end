@@ -168,7 +168,7 @@ export default async function Forum() {
                                     <footer className="flex justify-between items-center mb-2">
                                         <div className="flex items-center">
                                             <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                                                <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
                                                 {forum.first_name} {forum.last_name}</p>
                                             
                                         </div>
@@ -230,7 +230,7 @@ export default async function Forum() {
                                             <footer className="flex justify-between items-center mb-2">
                                                 <div className="flex items-center">
                                                     <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                                                        <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                        <svg className="mr-2 w-6 h-6 rounded-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
                                                         {comment.first_name} {comment.last_name}</p>
                                                     <p className="text-sm text-gray-600 dark:text-gray-400"><time
                                                         title="February 12th, 2022"></time></p>
