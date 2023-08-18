@@ -195,7 +195,7 @@ export default function Register() {
                        <Button  
                             onClick={goBack}
                             type={'ghost'}>
-                              {'Back'}
+                              {step==2 ? 'Back': ''}
                             </Button>
                      
 

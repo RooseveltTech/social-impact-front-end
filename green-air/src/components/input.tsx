@@ -28,7 +28,6 @@ export const Input = ({
 	onChange,
 	showRequired = false,
 	required = true,
-    matchPassword = false,
 }: InputProps) => {
     const email = value
     function isValidEmail(email: any): boolean {

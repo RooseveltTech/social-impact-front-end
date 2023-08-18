@@ -51,30 +51,33 @@ export const PasswordCardInfo = ({
                         Country
                     </label> 
                     {
-                        required && showRequired ? 
+                        required && !userInfo.countryName ? 
                         <p className="text-primary-starberry-red leading-3">
                             This field is required
                         </p> :""
                     }
                 </span>
                 <select
-                
-                className={clsx(
-					'border border-neutral-light-gray rounded px-4 py-2 text-sm transition-all focus:outline-none focus:ring-1 focus:ring-primary-purplish-blue',
-					
-						!event &&
-						'ring-1 ring-primary-starberry-red'
-				)}
-                onChange={(e: FormEvent<HTMLSelectElement>) =>
-					handleCountry(e, 'countryName')
-				}
-                 required>
-                    <option value="">Select Country</option>
-                {COUNTRIES.map((country) => {
-                return <option value={country.name}>{country.name} 
+                    value={userInfo.countryName}
+                    // showRequired={showRequired && !userInfo.city}
+                    className={clsx(
+                        'border border-neutral-light-gray rounded px-4 py-2 text-sm transition-all focus:outline-none focus:ring-1 focus:ring-primary-purplish-blue',
                         
-                </option>
-                })}
+						required && 
+                        !userInfo.countryName &&
+						'ring-1 ring-primary-starberry-red'
+                    )}
+                    onChange={(e: FormEvent<HTMLSelectElement>) =>
+                        handleCountry(e, 'countryName')
+                    }
+                    
+                    required>
+                        <option value="">Select Country</option>
+                    {COUNTRIES.map((country) => {
+                    return <option value={country.name}>{country.name} 
+                            
+                    </option>
+                    })}
              </select>
             </div>
 			<Input
